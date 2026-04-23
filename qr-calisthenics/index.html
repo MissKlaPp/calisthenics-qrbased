@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calisthenics Training | by QRbased</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Allenamento Calisthenics</h1>
+        <p>Esegui i movimenti in modo corretto e traccia i tuoi progressi.</p>
+    </header>
+
+    <main>
+        <section id="esercizi">
+            <h2>Esercizi Fondamentali</h2>
+            
+            <article class="card-esercizio">
+                <h3>Trazioni alla Sbarra (Pull-ups)</h3>
+                <img src="assets/trazioni.png" alt="Trazioni multi-frame" class="grafica-esercizio">
+                <p>Mantieni il core contratto. Tira fino a superare la sbarra con il mento. Scendi in modo controllato senza dondolare.</p>
+            </article>
+        
+            <article class="card-esercizio">
+                <h3>Dip alle Parallele</h3>
+                <img src="assets/dip.png" alt="Dip multi-frame" class="grafica-esercizio">
+                <p>Gomiti stretti o leggermente aperti in base al focus (tricipiti o petto). Scendi fino a portare le spalle sotto il livello dei gomiti, poi spingi estendendo le braccia.</p>
+            </article>
+        
+            <article class="card-esercizio">
+                <h3>Piegamenti (Push-ups)</h3>
+                <img src="assets/pushup.png" alt="Push-ups multi-frame" class="grafica-esercizio">
+                <p>Mantieni il corpo in linea retta dalla testa ai talloni. Scendi fino a sfiorare terra con il petto e spingi in modo esplosivo verso l'alto.</p>
+            </article>
+        
+            <article class="card-esercizio">
+                <h3>Squat</h3>
+                <img src="assets/squat.png" alt="Squat multi-frame" class="grafica-esercizio">
+                <p>Piega le ginocchia come se doveste sedervi su un piano posto alle tue spalle, spingendo il bacino all'indietro, quindi risali distendendo le ginocchia e riportando le braccia lungo il corpo.</p>
+            </article>
+        </section>
+
+        <hr>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <section id="diario" class="card-sezione">
+            <h2>Registro Allenamento</h2>
+            <p>Segna i tuoi volumi e le note per ogni esercizio.</p>
+            
+            <div class="form-nota">
+                <select id="nota-esercizio">
+                    <option value="Trazioni">Trazioni</option>
+                    <option value="Dip">Dip</option>
+                    <option value="Push-ups">Push-ups</option>
+                    <option value="Muscle-up">Muscle-up</option>
+                    <option value="Squat">Squat</option>
+                </select>
+    
+                <div class="input-group">
+                    <input type="number" id="nota-serie" placeholder="Serie" min="1">
+                    <span>x</span>
+                    <input type="number" id="nota-reps" placeholder="Reps" min="1">
+                </div>
+    
+                <input type="text" id="nota-dettagli" placeholder="Note (es. +10kg zavorra, lento...)" class="input-dettagli">
+    
+                <button type="button" id="btn-salva-nota">Aggiungi al Registro</button>
+            </div>
+            
+            <div id="area-da-fotografare">
+                <ul id="lista-allenamenti" class="workout-list">
+                    </ul>
+            </div>
+    
+            <button type="button" id="btn-screenshot" class="btn-secondary">📸 Salva Screenshot Scheda</button>
+        </section>
+
+        <hr>
+
+        <section id="calcolatore" class="card-sezione">
+            <h2>Calcolatore Massa Grassa</h2>
+            <p>Inserisci i tuoi dati per una stima veloce (Metodo Marina Militare).</p>
+            
+            <form id="form-bf">
+                <label for="sesso">Sesso:</label>
+                <select id="sesso" required>
+                    <option value="uomo">Uomo</option>
+                    <option value="donna">Donna</option>
+                </select>
+
+                <label for="altezza">Altezza (cm):</label>
+                <input type="number" id="altezza" placeholder="es. 175" required>
+
+                <label for="collo">Circonferenza Collo (cm):</label>
+                <input type="number" id="collo" placeholder="es. 38" required>
+
+                <label for="vita">Circonferenza Vita (cm):</label>
+                <input type="number" id="vita" placeholder="es. 80" required>
+
+                <div id="campo-fianchi" style="display: none;">
+                    <label for="fianchi">Circonferenza Fianchi (cm):</label>
+                    <input type="number" id="fianchi" placeholder="es. 95">
+                </div>
+
+                <button type="button" id="btn-calcola">Calcola</button>
+            </form>
+
+            <div id="risultato" class="risultato-nascosto"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="cta-qrbased">
+            <h3>Sviluppato da QRbased</h3>
+            <p>Ti piace questo servizio rapido e senza app da scaricare?</p>
+            <p>Digitalizziamo il tuo locale o la tua attività con soluzioni simili su misura.</p>
+            <a href="https://www.instagram.com/qrbased/" target="_blank" class="btn-contatto">Scopri di più</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
