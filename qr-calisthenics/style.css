@@ -290,4 +290,4 @@ footer p {
 /* Facciamo in modo che durante lo screenshot i bottoni "Elimina" non si vedano */
 .hide-for-screenshot .btn-elimina {
     display: none !important;
-}
+} 
