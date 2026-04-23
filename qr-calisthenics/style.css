@@ -243,19 +243,18 @@ footer p {
 
 .input-group {
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Impila gli elementi verticalmente */
     gap: 10px;
 }
 
 .input-group input {
-    flex: 1;
-    margin-bottom: 0; /* Rimuove il margine del vecchio stile */
-    text-align: center;
+    width: 100%; /* Fa occupare tutto lo spazio disponibile */
+    margin-bottom: 0; 
+    text-align: left; /* Riportiamo il testo a sinistra per allinearlo con le note */
 }
 
 .input-group span {
-    font-weight: bold;
-    color: #a1a1aa;
+    display: none; /* Nascondiamo la "x" perché impilati non ha più senso */
 }
 
 .nota-info {
