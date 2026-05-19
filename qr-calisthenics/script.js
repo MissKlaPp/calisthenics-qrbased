@@ -49,11 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
 const btnSalvaNota = document.getElementById("btn-salva-nota");
 const listaAllenamenti = document.getElementById("lista-allenamenti");
 const selectEs = document.getElementById("nota-esercizio");
+const inputEsCustom = document.getElementById("nota-esercizio-custom"); // Nuovo riferimento
 const inputSerie = document.getElementById("nota-serie");
 const inputReps = document.getElementById("nota-reps");
-const inputDettagli = document.getElementById("nota-dettagli"); // Nuovo input note
-const btnScreenshot = document.getElementById("btn-screenshot"); // Nuovo bottone
+const inputDettagli = document.getElementById("nota-dettagli"); 
+const btnScreenshot = document.getElementById("btn-screenshot"); 
 const CHIAVE_MEMORIA = "qrbased_registro_tecnico";
+
+// Logica per mostrare/nascondere la casella di testo personalizzata
+selectEs.addEventListener("change", () => {
+    if (selectEs.value === "Altro") {
+        inputEsCustom.style.display = "block";
+    } else {
+        inputEsCustom.style.display = "none";
+        inputEsCustom.value = ""; // Pulisce il campo se si cambia idea
+    }
+});
 
 function caricaDiario() {
     const storico = JSON.parse(localStorage.getItem(CHIAVE_MEMORIA)) || [];
@@ -69,7 +80,6 @@ function caricaDiario() {
         const li = document.createElement("li");
         li.className = "item-allenamento";
         
-        // Prepariamo l'HTML per la nota extra solo se l'utente l'ha scritta
         const notaHTML = nota.dettagli ? `<span class="nota-testo">"${nota.dettagli}"</span>` : "";
 
         li.innerHTML = `
@@ -85,10 +95,20 @@ function caricaDiario() {
 }
 
 btnSalvaNota.addEventListener("click", () => {
-    const esercizio = selectEs.value;
+    let esercizio = selectEs.value;
+    
+    // Se l'utente ha scelto "Altro", prendiamo il nome dalla casella di testo
+    if (esercizio === "Altro") {
+        esercizio = inputEsCustom.value.trim();
+        if (!esercizio) {
+            alert("Scrivi il nome dell'esercizio personalizzato.");
+            return;
+        }
+    }
+
     const serie = inputSerie.value;
     const reps = inputReps.value;
-    const dettagli = inputDettagli.value.trim(); // Recuperiamo il testo della nota
+    const dettagli = inputDettagli.value.trim(); 
     const data = new Date().toLocaleDateString('it-IT');
 
     if (!serie || !reps) {
@@ -96,18 +116,24 @@ btnSalvaNota.addEventListener("click", () => {
         return;
     }
 
-    // Salviamo anche i dettagli nell'oggetto
     const nuovaNota = { esercizio, serie, reps, dettagli, data };
     let storico = JSON.parse(localStorage.getItem(CHIAVE_MEMORIA)) || [];
     storico.push(nuovaNota);
     localStorage.setItem(CHIAVE_MEMORIA, JSON.stringify(storico));
 
-    // Pulizia campi
+    // Pulizia campi dopo il salvataggio
     inputSerie.value = "";
     inputReps.value = "";
     inputDettagli.value = "";
+    
+    // Rimettiamo la select su "Trazioni" e nascondiamo la casella custom
+    selectEs.value = "Trazioni";
+    inputEsCustom.style.display = "none";
+    inputEsCustom.value = "";
+    
     caricaDiario();
 });
+
 
 window.rimuoviNota = function(index) {
     let storico = JSON.parse(localStorage.getItem(CHIAVE_MEMORIA)) || [];
